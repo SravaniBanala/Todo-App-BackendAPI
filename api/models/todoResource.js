@@ -1,10 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
+//Schema related to TodoResource
 const schema = new mongoose.Schema({
-id: {
-        type:Number,
-        required:'The id is required'
-     },
 title: {
     type:String,
     required:'The Title Field is required'
