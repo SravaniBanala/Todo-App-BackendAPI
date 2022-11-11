@@ -89,6 +89,23 @@ export const getResourceById = async (request, response) => {
 }
 
 /**
+ * Export get method to search a  TodoResource
+ * @param {*} request 
+ * @param {*} response 
+ */
+
+ export const deleteAll = async (request, response) => {
+    try {
+        const todoResource = await TodoResourceService.deleteAll();
+        setSuccessResponse({ message: 'Successfully Removed  All to do tasks' }, response);
+    }
+    catch (error) {
+        setErrorResponse(error, response);
+    }
+
+}
+
+/**
  * Export get method to search all TodoResources
  * @param {*} request 
  * @param {*} response 

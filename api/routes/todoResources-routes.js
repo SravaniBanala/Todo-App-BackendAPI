@@ -9,6 +9,7 @@ const Router = express.Router();
  */
 Router.route('/todoResources')
     .post(todoResourcesController.post)
+    .delete(todoResourcesController.deleteAll)
     .get(todoResourcesController.get);
 
 /**

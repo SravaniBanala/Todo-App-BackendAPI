@@ -44,6 +44,16 @@ export const update = async (id,todoTask) => {
 }
 
 /**
+ * delete all todoResources
+ * @param 
+ * @returns 
+ */
+ export const deleteAll = async () => {
+    const updateTodoResource = TodoResource.deleteMany().exec();
+    return updateTodoResource;
+}
+
+/**
  * remove a todoResource
  * @param {id} id 
  * @returns {Promise<todoResource>}
