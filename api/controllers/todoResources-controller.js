@@ -20,11 +20,11 @@ const setErrorResponse = (err, response) => {
 }
 
 /**
- * Export Create method to post a new TodoResource
+ * Export post method to post a new TodoResource
  * @param {*} request 
  * @param {*} response 
  */
-export const create = async (request, response) => {
+export const post = async (request, response) => {
     try {
         const payload = request.body;
         const savedTodoResource = await TodoResourceService.save(payload);
@@ -40,13 +40,12 @@ export const create = async (request, response) => {
  * @param {*} request 
  * @param {*} response 
  */
-export const update = async (request, response) => {
+export const put = async (request, response) => {
     try {
-        const taskId = request.params.id;
-        const updated = { ...request.body };
-        updated.id = taskId;
-        const todoResource = await TodoResourceService.update(updated);
-        setSuccessResponse(todoResource, response);
+        const queryId = req.params.id;
+        const updatedTodoResource = {...req.body};
+        const updateTodoResource = await TodoResourceService.update(queryId, updatedTodoResource);
+        setSuccessResponse(updateTodoResource , response);
     }
     catch (error) {
         setErrorResponse(error, response);
@@ -59,7 +58,7 @@ export const update = async (request, response) => {
  * @param {*} request 
  * @param {*} response 
  */
-export const deletetask = async (request, response) => {
+export const remove = async (request, response) => {
     try {
         const taskId = request.params.id;
         const todoResource = await TodoResourceService.remove(taskId);
@@ -77,10 +76,10 @@ export const deletetask = async (request, response) => {
  * @param {*} response 
  */
 
-export const get = async (request, response) => {
+export const getResourceById = async (request, response) => {
     try {
         const taskId = request.params.id;
-        const todoResource = await TodoResourceService.get(taskId);
+        const todoResource = await TodoResourceService.searchResourceById(taskId);
         setSuccessResponse(todoResource, response);
     }
     catch (error) {
@@ -90,12 +89,12 @@ export const get = async (request, response) => {
 }
 
 /**
- * Export findAll method to search all TodoResources
+ * Export get method to search all TodoResources
  * @param {*} request 
  * @param {*} response 
  */
 
-export const findAll = async (request, response) => {
+export const get = async (request, response) => {
     try {
         const taskId = request.query.id;
         const tasktitle = request.query.title;

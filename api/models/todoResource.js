@@ -2,6 +2,10 @@ import mongoose, { Schema } from 'mongoose';
 
 //Schema related to TodoResource
 const schema = new mongoose.Schema({
+id: {
+    type:String,
+    required:'The id is required'
+},
 title: {
     type:String,
     required:'The Title Field is required'
@@ -21,16 +25,6 @@ lastModifiedDate: {
 
 }
 },{ versionKey:false });
-
-//schema.virtual('id',()=> this._id.toHexString());
-//schema.virtual('toJSON',{ virtuals :true});
-
-schema.method("toJSON",function(){
-    const {__v,_id,...Object} =this.toObject();
-    Object.id=_id;
-    return Object;
-
-});
 
 const model = mongoose.model('toDoResource',schema);
 

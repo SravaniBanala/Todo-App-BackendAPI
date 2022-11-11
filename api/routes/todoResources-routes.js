@@ -1,18 +1,24 @@
-import express from 'express'; 
+import express from 'express';
 import * as todoResourcesController from './../controllers/todoResources-controller.js'
-const Router =express.Router();
+const Router = express.Router();
 
-//Register Router related to todoResources to Router
-//routes for todoResources
+/**
+ * REST methods with end points
+ * Register Router related to todoResources to Router
+ * routes for todoResources
+ */
 Router.route('/todoResources')
-.post(todoResourcesController.create)
-.get(todoResourcesController.findAll);
+    .post(todoResourcesController.post)
+    .get(todoResourcesController.get);
 
-//routes for todoResources based on id
+/**
+ * id in Params
+ * routes for todoResources based on id
+ */
 Router.route('/todoResources/:id')
-.put(todoResourcesController.update)
-.delete(todoResourcesController.deletetask)
-.get(todoResourcesController.get);
+    .put(todoResourcesController.put)
+    .delete(todoResourcesController.remove)
+    .get(todoResourcesController.getResourceById);
 
 
 export default Router;

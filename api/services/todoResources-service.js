@@ -26,7 +26,7 @@ export const search = async (query) => {
  * @param {id} id 
  * @returns {Promise<todoResource>}
  */
-export const get = async (id) => {
+export const searchResourceById = async (id) => {
     const todoResources = TodoResource.findById(id).exec();
     return todoResources;
 }
@@ -36,10 +36,11 @@ export const get = async (id) => {
  * @param {id} id 
  * @returns {Promise<todoResource>}
  */
-export const update = async (updatedTodoResource) => {
-    updatedTodoResource.modifiedDate = new Date();
-    const todoResources = TodoResource.findByIdAndDelete(updatedTodoResource.id, updatedTodoResource, { new: true }).exec();
-    return todoResources;
+export const update = async (id,todoTask) => {
+    todoTask.modifiedDate = new Date();
+    const query = {id: id};
+    const updateTodoResource = TodoResource.findOneAndUpdate(query, todoTask).exec();
+    return updateTodoResource;
 }
 
 /**
@@ -48,6 +49,7 @@ export const update = async (updatedTodoResource) => {
  * @returns {Promise<todoResource>}
  */
 export const remove = async (id) => {
-    const todoResources = TodoResource.findByIdAndDelete(id).exec();
-    return todoResources;
+    const query = {id: id};
+    const updateTodoResource = TodoResource.findOneAndDelete(query).exec();
+    return updateTodoResource;
 }
