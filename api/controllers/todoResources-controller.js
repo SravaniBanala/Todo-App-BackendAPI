@@ -42,8 +42,8 @@ export const post = async (request, response) => {
  */
 export const put = async (request, response) => {
     try {
-        const queryId = req.params.id;
-        const updatedTodoResource = {...req.body};
+        const queryId = request.params.id;
+        const updatedTodoResource = {...request.body};
         const updateTodoResource = await TodoResourceService.update(queryId, updatedTodoResource);
         setSuccessResponse(updateTodoResource , response);
     }
